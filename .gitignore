@@ -2,6 +2,21 @@
 out/
 .vs/
 build/
+CMakeFiles/
+
+# Source code directory and files
+src/CMakeFiles
+src/OpenKrauzeEngine.dir
+src/Release
+src/Debug
+
+src/*.vcxproj
+src/*.vcxproj.filters
+src/*.vcxproj.user
+
+# Project Files
+*.sln
+*.cmake
 
 # Prerequisites
 *.d
