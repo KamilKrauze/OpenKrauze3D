@@ -1,6 +1,6 @@
 # Directories
 out/
-./.vs/
+.vs/
 
 # Prerequisites
 *.d
@@ -34,32 +34,3 @@ out/
 *.exe
 *.out
 *.app
-# out/build/x64-debug/VSInheritEnvironments.txt
-# out/build/x64-debug/Testing/Temporary/LastTest.log
-# out/build/x64-debug/OpenKrauzeEngine/cmake_install.cmake
-# out/build/x64-debug/CMakeFiles/TargetDirectories.txt
-# out/build/x64-debug/CMakeFiles/ShowIncludes/main.c
-# out/build/x64-debug/CMakeFiles/ShowIncludes/foo.h
-# out/build/x64-debug/CMakeFiles/rules.ninja
-# out/build/x64-debug/CMakeFiles/CMakeConfigureLog.yaml
-# out/build/x64-debug/CMakeFiles/cmake.check_cache
-# out/build/x64-debug/CMakeFiles/3.27.2-msvc1/CompilerIdCXX/CMakeCXXCompilerId.cpp
-# out/build/x64-debug/CMakeFiles/3.27.2-msvc1/CompilerIdC/CMakeCCompilerId.c
-# out/build/x64-debug/CMakeFiles/3.27.2-msvc1/CMakeSystem.cmake
-# out/build/x64-debug/CMakeFiles/3.27.2-msvc1/CMakeRCCompiler.cmake
-# out/build/x64-debug/CMakeFiles/3.27.2-msvc1/CMakeDetermineCompilerABI_CXX.bin
-# out/build/x64-debug/CMakeFiles/3.27.2-msvc1/CMakeDetermineCompilerABI_C.bin
-# out/build/x64-debug/CMakeFiles/3.27.2-msvc1/CMakeCXXCompiler.cmake
-# out/build/x64-debug/CMakeFiles/3.27.2-msvc1/CMakeCCompiler.cmake
-# out/build/x64-debug/CMakeCache.txt
-# out/build/x64-debug/cmake_install.cmake
-# out/build/x64-debug/build.ninja
-# out/build/x64-debug/.cmake/api/v1/reply/toolchains-v1-33d97187a3a53c5d7115.json
-# out/build/x64-debug/.cmake/api/v1/reply/target-OpenKrauzeEngine-Debug-211fe8068d805d56c15b.json
-# out/build/x64-debug/.cmake/api/v1/reply/index-2023-12-07T16-57-09-0129.json
-# out/build/x64-debug/.cmake/api/v1/reply/directory-OpenKrauzeEngine-Debug-968ca19c9c0c29da16dc.json
-# out/build/x64-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json
-# out/build/x64-debug/.cmake/api/v1/reply/codemodel-v2-8a66205716ec118218d3.json
-# out/build/x64-debug/.cmake/api/v1/reply/cmakeFiles-v1-dcefde6932ab30299b9f.json
-# out/build/x64-debug/.cmake/api/v1/reply/cache-v2-21a9982e45120622aabe.json
-# out/build/x64-debug/.cmake/api/v1/query/client-MicrosoftVS/query.json
