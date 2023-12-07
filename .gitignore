@@ -50,3 +50,4 @@ src/*.vcxproj.user
 *.exe
 *.out
 *.app
+thirdparty/lib/glfw
