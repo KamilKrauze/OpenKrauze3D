@@ -1,12 +1,9 @@
-﻿// OpenKrauzeEngine.cpp : Defines the entry point for the application.
-//
+#include <iostream>
 
-#include "main.h"
+// Adding OpenGL library
+#pragma comment(lib, "opengl32.lib")
 
-using namespace std;
-
-int main()
-{
-	cout << "Hello CMake." << endl;
-	return 0;
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
 }
