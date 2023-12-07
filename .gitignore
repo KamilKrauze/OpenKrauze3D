@@ -3,6 +3,7 @@
 .vscode/
 include/
 lib/
+build/
 
 # Source code directory and files
 src/bin
