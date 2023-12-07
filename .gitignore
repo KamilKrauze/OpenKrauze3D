@@ -1,6 +1,6 @@
 # Directories
-./out/*
-./.vs
+./out/
+./.vs/
 
 # Prerequisites
 *.d
