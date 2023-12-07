@@ -1,7 +1,7 @@
 ﻿// OpenKrauzeEngine.cpp : Defines the entry point for the application.
 //
 
-#include "OpenKrauzeEngine.h"
+#include "main.h"
 
 using namespace std;
 

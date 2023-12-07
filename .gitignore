@@ -1,6 +1,7 @@
 # Directories
 out/
 .vs/
+build/
 
 # Prerequisites
 *.d
