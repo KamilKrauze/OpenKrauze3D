@@ -1,5 +1,5 @@
-#ifndef SHADER_PIPELINE_H
-#define SHADER_PIPELINE_H
+#ifndef SHADER_BUILDER_H
+#define SHADER_BUILDER_H
 
 #pragma comment(lib, "glfw3.lib")
 
@@ -12,7 +12,7 @@
 
 
 namespace Pipeline {
-	namespace Shader {
+	namespace ShaderBuilder {
 
 		struct ShaderPaths {
 			const char* fp_shader; // File path to a single shader file.
@@ -51,5 +51,5 @@ namespace Pipeline {
 	}
 }
 
-#endif // !SHADER_PIPELINE_H
+#endif // !SHADER_BUILDER_H
 
