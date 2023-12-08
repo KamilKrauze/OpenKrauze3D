@@ -7,7 +7,7 @@ project "OpenKrauzeEngine"
     kind "ConsoleApp"
     language "C++"
     
-    targetdir "bin/%{cfg.buildcfg}-${cfg.configurations}-${cfg.system}.${cfg.architecture}"
+    targetdir "bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
     files { 
         "./src/**.h",
