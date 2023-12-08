@@ -4,6 +4,7 @@
 include/
 lib/
 build/
+bin/
 
 # Source code directory and files
 src/bin
