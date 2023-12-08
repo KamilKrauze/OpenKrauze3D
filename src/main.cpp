@@ -1,9 +1,13 @@
 #include <iostream>
 
+#include "App.h"
+
+#pragma comment(lib, "glfw3.lib")
+
 // Adding OpenGL library
 #pragma comment(lib, "opengl32.lib")
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    App app;
+    return app.run();
 }
