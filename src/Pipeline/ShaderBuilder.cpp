@@ -1,9 +1,29 @@
-#include "ShaderPipeline.h"
+#include "ShaderBuilder.h"
+
+#include "../Core/Sanitize.h"
 
 #include <fstream>
 #include <iostream>
 #include <vector>
 #include <exception>
+
+enum class ShaderCombination {
+	NONE, // No files.
+
+	VERT_FRAG,				// Separate vert and frag files only.
+	VERT_FRAG_GEOM,			// Separate vert, frag, and geometry files only.
+	VERT_FRAG_TESS,			// Separate vert, frag, and tesselation files only.
+	VERT_FRAG_GEOM_TESS,	// Separate vert, frag, geometry, and tesselation files.
+	
+	SINGLE,					// Single file with vert and frag.
+	SINGLE_GEOM,			// Single file with vert and frag shader, and separate geometry shader.
+	SINGLE_TESS,			// Single file with vert and frag shader, and separate tesselation shader.
+	SINGLE_GEOM_TESS,		// Single file with vert and frag shader, and separate geometry and tesselation shaders.
+	
+	SINGLE_INC_GEOM,		// Single file with vert, frag, and geometry shader.
+	SINGLE_INC_TESS,		// Single file with vert, frag, and tesselation shader.
+	SINGLE_INC_ALL			// Single file with vert, frag, geometry, and tesselation shader.
+};
 
 // Read text in file helper function
 std::string readFile(const char* filePath)
@@ -26,6 +46,93 @@ std::string readFile(const char* filePath)
 	return content;
 }
 
+GLuint Pipeline::Shader::LoadShader(const ShaderPaths filepath)
+{
+	GLuint shaderID = NULL;
+	ShaderCombination combination = ShaderCombination::NONE;
+
+	// Separate files
+	if (checkptr(filepath.fp_vert) && checkptr(filepath.fp_frag))
+	{
+		combination = ShaderCombination::VERT_FRAG;
+
+		if (checkptr(filepath.fp_geom)) {
+			combination = ShaderCombination::VERT_FRAG_GEOM;
+		}
+
+		if (checkptr(filepath.fp_tess)) {
+			switch (combination) {
+			case ShaderCombination::VERT_FRAG_GEOM:
+				combination = ShaderCombination::VERT_FRAG_GEOM_TESS;
+				break;
+			
+			default:
+				combination = ShaderCombination::VERT_FRAG_TESS;
+				break;
+			}
+		}
+	}
+
+	// Single with optional separate files
+	else if (checkptr(filepath.fp_shader)) {
+		
+		combination = ShaderCombination::SINGLE;
+
+		if (checkptr(filepath.fp_geom)) {
+			combination = ShaderCombination::SINGLE_GEOM;
+		}
+
+		if (checkptr(filepath.fp_tess)) {
+			switch (combination) {
+			case ShaderCombination::SINGLE_GEOM:
+				combination = ShaderCombination::SINGLE_GEOM_TESS;
+				break;
+
+			default:
+				combination = ShaderCombination::SINGLE_TESS;
+				break;
+			}
+		}
+	}
+
+	// Throw error if none found
+	if (combination == ShaderCombination::NONE) throw std::runtime_error("ERROR: No shaders specified");
+
+	// Select shader loader
+	std::string vert, frag, geom, tess;
+	switch (combination) {
+	case ShaderCombination::VERT_FRAG:
+		shaderID = LoadShader(filepath.fp_vert, filepath.fp_frag);
+		break;
+
+	case ShaderCombination::VERT_FRAG_GEOM:
+		break;
+
+	case ShaderCombination::VERT_FRAG_TESS:
+		break;
+
+	case ShaderCombination::VERT_FRAG_GEOM_TESS:
+		break;
+
+	case ShaderCombination::SINGLE:
+		// Read file and create separate intermediary files.
+		// Load shader
+		shaderID = LoadShader(vert.c_str(), frag.c_str());
+		break;
+
+	case ShaderCombination::SINGLE_GEOM:
+		break;
+
+	case ShaderCombination::SINGLE_TESS:
+		break;
+
+	case ShaderCombination::SINGLE_GEOM_TESS:
+		break;
+	}
+
+	return shaderID;
+}
+
 GLuint Pipeline::Shader::LoadShader(const char* vertex_path, const char* fragment_path)
 {
 	GLuint vertShader, fragShader;
@@ -37,8 +144,8 @@ GLuint Pipeline::Shader::LoadShader(const char* vertex_path, const char* fragmen
 	GLint result = GL_FALSE;
 	int logLength;
 
-	//vertShader = BuildShader(GL_VERTEX_SHADER, vertShaderStr);
-	//fragShader = BuildShader(GL_FRAGMENT_SHADER, fragShaderStr);
+	vertShader = BuildShader(GL_VERTEX_SHADER, vertShaderStr);
+	fragShader = BuildShader(GL_FRAGMENT_SHADER, fragShaderStr);
 
 	std::cout << "Linking program:\n" << vertex_path + '\n' << "\n" << fragment_path + '\n' << "\n" << std::endl;
 	GLuint program = glCreateProgram();
