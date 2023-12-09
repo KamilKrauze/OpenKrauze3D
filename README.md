@@ -21,6 +21,9 @@ By default if ran normally via your IDE, command-line or desktop, the app will u
 > ```cmd
 > C:\Users\foo>./OpenKrauzeEngine.exe -t 10 -tR 5
 > ```
-> $$ \frac{10}{5} = 2 $$
+> $$ 
+> \frac{10}{5} = 2
+> $$
+> 
 > ``2 threads used for multi-processing.``
 > <br>
