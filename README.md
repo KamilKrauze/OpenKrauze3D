@@ -17,13 +17,22 @@ By default if ran normally via your IDE, command-line or desktop, the app will u
 | ```-tR``` | `unsigned int` | The ratio of threads to use. | If the ratio is too small then it will use 2. | $$1$$                |
 
 ## Example 
-> ### Windows
-> ```cmd
-> C:\Users\foo>./OpenKrauzeEngine.exe -t 10 -tR 5
-> ```
+> <br>
+> 
+> >  ### Windows
+> > ```cmd
+> > ./OpenKrauzeEngine.exe -t 10 -tR 5
+> > ```
+> > <br>
+>
+> >  ### Linux
+> >  ```console
+> >  ./OpenKrauzeEngine -t 10 -tR 5
+> >  ```
+> > <br>
 > $$ 
 > \frac{10}{5} = 2
 > $$
 > 
-> ``2 threads used for multi-processing.``
+> 2 threads allocated for multi-processing.>
 > <br>
