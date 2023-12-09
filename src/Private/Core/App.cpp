@@ -1,6 +1,6 @@
-#include "App.h"
+#include "Core/App.h"
 #include "Inputs/Inputs.h"
-#include "Pipeline/ShaderPipeline.h"
+#include "Pipeline/ShaderBuilder.h"
 
 #include <glm/glm.hpp>
 

@@ -27,8 +27,8 @@ namespace Pipeline {
 			ShaderPaths
 			(
 				const char* shader = nullptr, 
-				const char* vert,
-				const char* frag,
+				const char* vert = nullptr,
+				const char* frag = nullptr,
 				const char* geom = nullptr,
 				const char* tess = nullptr
 			) : fp_shader(shader), fp_vert(vert), fp_frag(frag), fp_geom(geom), fp_tess(tess) {}

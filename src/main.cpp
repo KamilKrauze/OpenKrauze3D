@@ -1,13 +1,11 @@
 #pragma comment (lib, "opengl32.lib")
 
-#include <thread>
-
 #include "App.h"
-#include <omp.h>
+#include "main.h"
 
-int main() {
-	const unsigned int threads = std::thread::hardware_concurrency();
-	omp_set_num_threads(threads);
+int main(int argc, char* argv[]) {
+
+	set_omp_threads(argc, argv);
 
 	App* app = new App();
 	return app->run();

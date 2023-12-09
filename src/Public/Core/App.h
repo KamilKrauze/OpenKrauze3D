@@ -4,7 +4,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "Core/Core.h"
+#include "Core.h"
 class App : public Core
 {
 private:

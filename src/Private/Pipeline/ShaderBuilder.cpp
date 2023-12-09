@@ -46,7 +46,7 @@ std::string readFile(const char* filePath)
 	return content;
 }
 
-GLuint Pipeline::Shader::LoadShader(const ShaderPaths filepath)
+GLuint Pipeline::ShaderBuilder::LoadShader(const ShaderPaths filepath)
 {
 	GLuint shaderID = NULL;
 	ShaderCombination combination = ShaderCombination::NONE;
@@ -133,7 +133,7 @@ GLuint Pipeline::Shader::LoadShader(const ShaderPaths filepath)
 	return shaderID;
 }
 
-GLuint Pipeline::Shader::LoadShader(const char* vertex_path, const char* fragment_path)
+GLuint Pipeline::ShaderBuilder::LoadShader(const char* vertex_path, const char* fragment_path)
 {
 	GLuint vertShader, fragShader;
 
@@ -167,7 +167,7 @@ GLuint Pipeline::Shader::LoadShader(const char* vertex_path, const char* fragmen
 	return program;
 }
 
-GLuint Pipeline::Shader::BuildShader(GLenum eShaderType, const std::string& shaderText)
+GLuint Pipeline::ShaderBuilder::BuildShader(GLenum eShaderType, const std::string& shaderText)
 {
 	GLuint shader = glCreateShader(eShaderType);
 	const char* strFileData = shaderText.c_str();
@@ -204,7 +204,7 @@ GLuint Pipeline::Shader::BuildShader(GLenum eShaderType, const std::string& shad
 	return shader;
 }
 
-GLuint Pipeline::Shader::BuildShaderProgram(std::string vertShaderStr, std::string fragShaderStr)
+GLuint Pipeline::ShaderBuilder::BuildShaderProgram(std::string vertShaderStr, std::string fragShaderStr)
 {
 	GLuint vertShader, fragShader;
 	GLint result = GL_FALSE;

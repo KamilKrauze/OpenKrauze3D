@@ -17,6 +17,8 @@ project "OpenKrauzeEngine"
     }
 
     includedirs {
+        "./src/Public/",
+        "./src/Private/",
         "./include/"
     }
 
