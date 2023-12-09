@@ -1,12 +1,12 @@
 #pragma comment (lib, "opengl32.lib")
 
-#include "App.h"
+#include "Core/App.h"
 #include "main.h"
 
 int main(int argc, char* argv[]) {
 
 	set_omp_threads(argc, argv);
 
-	App* app = new App();
-	return app->run();
+	OKE3D::App app(800, 800, "Open Krauze Rendrer");
+	return app.run();
 }

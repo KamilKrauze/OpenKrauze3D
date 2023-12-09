@@ -4,7 +4,7 @@
 
 #include <glm/glm.hpp>
 
-App::App() : Core()
+OKE3D::App::App() : Core()
 {
     shader_program = NULL;
     vao = NULL;
@@ -13,11 +13,18 @@ App::App() : Core()
         exit(EXIT_FAILURE);
 }
 
-App::~App()
+OKE3D::App::App(int w, int h, const char* title)
+{
+	win_properties = std::make_shared<WindowProperties>(w, h, title);
+
+	*this = App();
+}
+
+OKE3D::App::~App()
 {
 }
 
-void App::init()
+void OKE3D::App::init()
 {
     // Generate index (name) for one vertex array object
     glGenVertexArrays(1, &vao);
@@ -39,7 +46,7 @@ void App::init()
 
 }
 
-void App::display()
+void OKE3D::App::display()
 {
 	using namespace glm;
 
@@ -60,7 +67,7 @@ void App::display()
 
 }
 
-int App::run()
+int OKE3D::App::run()
 {
 	glfwWindowHint(GLFW_SAMPLES, 8);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -72,7 +79,7 @@ int App::run()
 	glfwSetErrorCallback(this->error_callback);
 
 	/* Create a GLFW window, bail out if it doesn't work */
-	this->window = glfwCreateWindow(800, 800, "OpenKrauzeEngine", NULL, NULL);
+	this->window = glfwCreateWindow(win_properties->width, win_properties->height, win_properties->title, NULL, NULL);
 	if (!this->window)
 	{
 		glfwTerminate();
