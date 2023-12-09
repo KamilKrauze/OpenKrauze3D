@@ -1,6 +1,6 @@
-#include "ShaderBuilder.h"
+#include "Pipeline/ShaderBuilder.h"
 
-#include "../Core/Sanitize.h"
+#include "Core/Sanitize.h"
 
 #include <fstream>
 #include <iostream>

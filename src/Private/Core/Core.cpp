@@ -1,6 +1,6 @@
-#include "Core.h"
+#include "Core/Core.h"
 
-Core::Core()
+OKE3D::Core::Core()
 {
 	this->window = nullptr;
 }
