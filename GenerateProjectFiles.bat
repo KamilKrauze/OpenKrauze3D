@@ -5,7 +5,7 @@ if not exist "./include" (
   mkdir include
 )
 
-if exist "./lib" (
+if not exist "./lib" (
   mkdir lib
 )
 
