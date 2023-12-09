@@ -1,6 +1,7 @@
 #include "Core/App.h"
 #include "Inputs/Inputs.h"
 #include "Pipeline/ShaderBuilder.h"
+#include "Globals/API_Defaults.h"
 
 #include <glm/glm.hpp>
 
@@ -51,7 +52,7 @@ void OKE3D::App::display()
 	using namespace glm;
 
 	/* Define the background colour */
-	glClearColor(1, 0, 1, 1);
+	glClearColor(0.1, 0.1, 0.1, 1);
 
 	/* Clear the colour and frame buffers */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -69,9 +70,9 @@ void OKE3D::App::display()
 
 int OKE3D::App::run()
 {
-	glfwWindowHint(GLFW_SAMPLES, 8);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_SAMPLES, Globals::API_Defaults::Samples);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, Globals::API_Defaults::MajorVersion);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, Globals::API_Defaults::MinorVersion);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_DOUBLEBUFFER, GLFW_TRUE);
 
