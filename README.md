@@ -1,9 +1,10 @@
-# Open Krauze Engine
- 
-This is a 3D graphics engine hobby project using the OpenGL 4.5 API and GLFW.
+# Open Krauze Engine - Stripped
+This is the <b>stripped branch</b>, where everything but the basic rendering is stripped. This is a good starting point for anyone who may be new to OpenGL or graphics programming in general.
+
+This is a 3D graphics engine hobby project using the OpenGL 4.6 API and GLFW.
 The premise is to create a flexible and multi-platform graphics engine.
 
-I will not provide built binaries and libraries used for you, as I do not own or contribute those projects, please navigate to the [thirdparty folder](https://github.com/KamilKrauze/OpenKrauzeEngine/tree/main/thirdparty) for the list of libraries used.
+I will not provide built binaries and libraries used in this project for you, as I do not own or contribute those projects, please navigate to the [thirdparty folder](https://github.com/KamilKrauze/OpenKrauzeEngine/tree/main/thirdparty) for the list of libraries used.
 
 For project generation please use [premake 5](https://premake.github.io/).
 
