@@ -17,7 +17,7 @@ namespace OKE3D {
 		/* Construction / Deconstruction */
 	protected:
 		Core();
-		~Core() = default;
+		~Core();
 
 		/* Static Functions */
 	protected:
