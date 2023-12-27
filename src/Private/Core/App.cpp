@@ -25,6 +25,7 @@ OKE3D::App::~App()
 {
 }
 
+unsigned int positionBufferObject, colourObject;
 void OKE3D::App::init()
 {
     // Generate index (name) for one vertex array object
@@ -33,10 +34,23 @@ void OKE3D::App::init()
     // Create the vertex array object and make it current
     glBindVertexArray(vao);
 
+	float vertexPositions[] = {
+		0.75f, 0.75f, 0.0f, 1.0f,
+		0.75f, -0.75f, 0.0f, 1.0f,
+		-0.75f, -0.75f, 0.0f, 1.0f,
+	};
+
+	/* Define an array of colours */
+	float vertexColours[] = {
+		1.0f, 1.0f, 1.0f, 1.0f,
+		0.0f, 1.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 1.0f, 1.0f,
+	};
+
 	/* Load and build the vertex and fragment shaders */
 	try
 	{
-		/*shader_program = Pipeline::Shader::LoadShader("./shaders/UVcheckerboard.vert", "./shaders/UVcheckerboard.frag");*/
+		shader_program = Pipeline::ShaderBuilder::LoadShader("./shaders/basic.vert", "./shaders/basic.frag");
 	}
 	catch (std::exception& e)
 	{
@@ -44,6 +58,17 @@ void OKE3D::App::init()
 		std::cin.ignore();
 		exit(0);
 	}
+
+	/* Genrate a name for a vertex buffer object */
+	glGenBuffers(1, &positionBufferObject);
+	glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositions), vertexPositions, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glGenBuffers(1, &colourObject);
+	glBindBuffer(GL_ARRAY_BUFFER, colourObject);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexColours), vertexColours, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 }
 
@@ -60,7 +85,18 @@ void OKE3D::App::display()
 	/* Enable depth test  */
 	glEnable(GL_DEPTH_TEST);
 
-	//glUseProgram(shader_program);
+	glUseProgram(shader_program);
+
+	glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, colourObject);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+
 
 	/* Turn off program and vertex attribute array after rendering frame */
 	glDisableVertexAttribArray(0);
