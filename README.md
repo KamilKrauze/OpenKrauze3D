@@ -35,5 +35,5 @@ By default if ran normally via your IDE, command-line or desktop, the app will u
 > \frac{10}{5} = 2
 > $$
 > 
-> 2 threads allocated for multi-processing.>
+> 2 threads allocated for multi-processing.
 > <br>
