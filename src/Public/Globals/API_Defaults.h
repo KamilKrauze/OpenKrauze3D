@@ -5,10 +5,10 @@ namespace OKE3D {
 	namespace Globals {
 		namespace API_Defaults {
 
-			static short Samples = 8;
+			inline short Samples = 8;
 
-			static short MajorVersion = 4;
-			static short MinorVersion = 6;
+			inline constexpr short MajorVersion = 4;
+			inline constexpr short MinorVersion = 6;
 
 		}
 	}
