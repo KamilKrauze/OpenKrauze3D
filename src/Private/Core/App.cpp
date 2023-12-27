@@ -72,7 +72,7 @@ void OKE3D::App::init()
 	{
 		shader_program = Pipeline::ShaderBuilder::LoadShader("./shaders/basic.vert", "./shaders/basic.frag");
 	}
-	catch (std::exception& e)
+	catch (std::runtime_error& e)
 	{
 		std::cout << "Caught exception: " << e.what() << std::endl;
 		std::cin.ignore();
