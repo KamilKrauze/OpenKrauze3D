@@ -1,5 +1,5 @@
-# Open Krauze Engine - Stripped
 > This is the <b>stripped branch</b>, where everything but the basic renderer is stripped. This is a good starting point for anyone who may be new to OpenGL or graphics programming in general.
+# Open Krauze Engine - Stripped
 
 This is a 3D graphics engine hobby project using the OpenGL 4.6 API and GLFW.
 The premise is to create a flexible and multi-platform graphics engine.
