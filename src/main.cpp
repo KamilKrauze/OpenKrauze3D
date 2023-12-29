@@ -1,5 +1,3 @@
-#pragma comment (lib, "opengl32.lib")
-
 #include "Core/App.h"
 #include "main.h"
 

@@ -48,7 +48,7 @@ std::string readFile(const char* filePath)
 
 GLuint Pipeline::ShaderBuilder::LoadShader(const ShaderPaths filepath)
 {
-	GLuint shaderID = NULL;
+	unsigned int shaderID = 0;
 	ShaderCombination combination = ShaderCombination::NONE;
 
 	// Separate files
@@ -214,10 +214,10 @@ GLuint Pipeline::ShaderBuilder::BuildShaderProgram(std::string vertShaderStr, st
 		vertShader = BuildShader(GL_VERTEX_SHADER, vertShaderStr);
 		fragShader = BuildShader(GL_FRAGMENT_SHADER, fragShaderStr);
 	}
-	catch (std::exception& e)
+	catch (std::runtime_error& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
-		throw std::exception("BuildShaderProgram() Build shader failure. Abandoning");
+		throw std::runtime_error("BuildShaderProgram() Build shader failure. Abandoning");
 	}
 
 	GLuint program = glCreateProgram();

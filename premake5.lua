@@ -17,28 +17,34 @@ project "OpenKrauzeEngine"
     }
 
     includedirs {
+        -- Project source code
         "./src/Public/",
         "./src/Private/",
-        "./include/"
+        
+        -- Thirdparty
+        "./thirdparty/include/"
     }
 
     libdirs {
-        "./lib/"
-    }
-
-    shaderincludedirs {
-        "./shaders/"
+        "./thirdparty/lib/"
     }
 
 -- Windows system
 
     filter "system:windows"
-        cppdialect "C++20"
+        system "windows"
+        cppdialect "C++17"
         systemversion "latest"
         flags { "MultiProcessorCompile" }
 
-    -- Linux support in the future
+-- Linux system
+    filter "system:linux"
+        system "linux"
+        cppdialect "gnu++17"
+        buildoptions { "-fopenmp" }
+        links { "omp", "glfw", "GL", "m", "X11", "pthread", "Xi", "Xrandr", "dl" }
 
+-- Build configurations
     filter "configurations:Debug"
         defines "DEBUG"
         symbols "On"
