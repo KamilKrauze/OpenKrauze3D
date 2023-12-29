@@ -1,4 +1,4 @@
-# Open Krauze Engine
+# Open Krauze 3D
  
 This is a 3D graphics engine hobby project using the OpenGL 4.5 API and GLFW.
 The premise is to create a flexible and multi-platform graphics engine.
