@@ -3,6 +3,8 @@
 #include "Pipeline/ShaderBuilder.h"
 #include "Globals/API_Defaults.h"
 
+#include <vector>
+
 #include <glm/glm.hpp>
 
 OKE3D::App::App() : Core()
@@ -17,13 +19,15 @@ OKE3D::App::App() : Core()
 OKE3D::App::App(int w, int h, const char* title)
 {
 	win_properties = std::make_shared<WindowProperties>(w, h, title);
-
 	*this = App();
 }
 
 OKE3D::App::~App()
 {
 }
+
+unsigned int positionBufferObject;
+unsigned int colourBufferObject;
 
 void OKE3D::App::init()
 {
@@ -33,12 +37,42 @@ void OKE3D::App::init()
     // Create the vertex array object and make it current
     glBindVertexArray(vao);
 
+	std::vector<glm::vec4> verts {
+		{ -0.5f, 0.5f, 0.0f, 1.0f },
+		{ 0.5f, 0.5f, 0.0f, 1.0f },
+		{ 0.5f, -0.5f, 0.0f, 1.0f },
+		
+		{ 0.5f, -0.5f, 0.0f, 1.0f },
+		{ -0.5f, -0.5f, 0.0f, 1.0f },
+		{ -0.5f, 0.5f, 0.0f, 1.0f },
+	};
+
+	std::vector<glm::vec4> colour {
+		{1, 0, 0, 1},
+		{0, 1, 0, 1},
+		{0, 0, 1, 1},
+
+		{1, 0, 0, 1},
+		{0, 1, 0, 1},
+		{0, 0, 1, 1}
+	};
+
+	glGenBuffers(1, &positionBufferObject);
+	glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * verts.size(), &verts[0], GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glGenBuffers(1, &colourBufferObject);
+	glBindBuffer(GL_ARRAY_BUFFER, colourBufferObject);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * colour.size(), &colour[0], GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 	/* Load and build the vertex and fragment shaders */
 	try
 	{
-		/*shader_program = Pipeline::Shader::LoadShader("./shaders/UVcheckerboard.vert", "./shaders/UVcheckerboard.frag");*/
+		shader_program = Pipeline::ShaderBuilder::LoadShader("./shaders/basic.vert", "./shaders/basic.frag");
 	}
-	catch (std::exception& e)
+	catch (std::runtime_error& e)
 	{
 		std::cout << "Caught exception: " << e.what() << std::endl;
 		std::cin.ignore();
@@ -60,7 +94,18 @@ void OKE3D::App::display()
 	/* Enable depth test  */
 	glEnable(GL_DEPTH_TEST);
 
-	//glUseProgram(shader_program);
+	glUseProgram(shader_program);
+
+	glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, colourBufferObject);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	/* Turn off program and vertex attribute array after rendering frame */
 	glDisableVertexAttribArray(0);

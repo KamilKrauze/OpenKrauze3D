@@ -33,8 +33,7 @@ namespace OKE3D {
 		*/
 		static void reshape(GLFWwindow* window, int w, int h) {
 			OKE3D::update_window_properties(win_properties.get(), w, h);
-
-			glViewport(0, 0, static_cast<GLsizei>(w), static_cast<GLsizei>(h));
+			glViewport(0, 0, w, h);
 		}
 	};
 };
